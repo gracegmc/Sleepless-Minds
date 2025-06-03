@@ -268,3 +268,48 @@ body {
     30% { opacity: 0.3; }
     100% { opacity: 0; }
 }
+
+/* Apply scroll snap to the body/html */
+html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+    color: #ffffff;
+    overflow-x: hidden;
+    /* Add scroll snap container */
+    scroll-snap-type: y mandatory;
+}
+
+/* Make each section a snap point */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    background: radial-gradient(circle at center, rgba(74, 144, 226, 0.1) 0%, transparent 70%);
+    /* Add scroll snap alignment */
+    scroll-snap-align: start;
+}
+
+.section {
+    min-height: 100vh;
+    padding: 80px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Add scroll snap alignment */
+    scroll-snap-align: start;
+}
+
+/* Optional: Add scroll snap stop to force stopping at each section */
+.hero,
+.section {
+    scroll-snap-stop: always;
+}
