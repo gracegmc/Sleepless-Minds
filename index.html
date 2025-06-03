@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" />
     <title>The Sleep-Deprived Brain</title>
+    <script type="module" src="global.js"></script>
 </head>
 <body>
     <div class="hero">
         <h1>The Sleep-Deprived Brain</h1>
         <p>Explore how 24 hours without sleep transforms neural activity, cognitive performance, and brain connectivity</p>
-        <div class="scroll-indicator">
+        <div class="scroll-indicator" id = 'scroll-down'>
             <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 5v14M5 12l7 7 7-7"/>
             </svg>
         </div>
     </div>
 
-    <div class="section">
+    <div class="section" id="brain-section"> 
         <div class="container">
             <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px; color: #4a90e2;">Brain Activity Visualization</h2>
             
@@ -97,116 +98,5 @@
         </div>
     </div>
 
-    <script>
-        // Initialize brain visualization
-        function initBrainViz() {
-            const leftBrain = document.querySelector('.brain-left');
-            const rightBrain = document.querySelector('.brain-right');
-            
-            // Add activity nodes to represent fNIRS channels
-            const nodePositions = [
-                {x: 30, y: 80}, {x: 80, y: 60}, {x: 120, y: 90}, {x: 60, y: 120},
-                {x: 140, y: 140}, {x: 90, y: 160}, {x: 40, y: 180}, {x: 110, y: 200},
-                {x: 70, y: 240}, {x: 130, y: 260}, {x: 50, y: 280}, {x: 100, y: 320}
-            ];
-
-            nodePositions.forEach((pos, i) => {
-                // Left brain nodes
-                const leftNode = document.createElement('div');
-                leftNode.className = 'activity-node';
-                leftNode.style.left = pos.x + 'px';
-                leftNode.style.top = pos.y + 'px';
-                leftNode.style.animationDelay = (i * 0.2) + 's';
-                leftBrain.appendChild(leftNode);
-
-                // Right brain nodes
-                const rightNode = document.createElement('div');
-                rightNode.className = 'activity-node';
-                rightNode.style.left = pos.x + 'px';
-                rightNode.style.top = pos.y + 'px';
-                rightNode.style.animationDelay = (i * 0.2) + 's';
-                rightBrain.appendChild(rightNode);
-
-                // Add connection lines between some nodes
-                if (i < nodePositions.length - 1 && Math.random() > 0.4) {
-                    const line = document.createElement('div');
-                    line.className = 'connection-line';
-                    const angle = Math.atan2(nodePositions[i+1].y - pos.y, nodePositions[i+1].x - pos.x);
-                    const length = Math.sqrt(Math.pow(nodePositions[i+1].x - pos.x, 2) + Math.pow(nodePositions[i+1].y - pos.y, 2));
-                    line.style.width = length + 'px';
-                    line.style.left = pos.x + 'px';
-                    line.style.top = pos.y + 'px';
-                    line.style.transform = `rotate(${angle}rad)`;
-                    line.style.animationDelay = (i * 0.3) + 's';
-                    leftBrain.appendChild(line);
-                }
-            });
-        }
-
-        // State switching functionality
-        function switchBrainState(isDeprived) {
-            const brainContainer = document.getElementById('brain-viz');
-            const insightText = document.getElementById('insight-text');
-            const bars = document.querySelectorAll('.bar-fill');
-            const values = document.querySelectorAll('.metric-value');
-
-            if (isDeprived) {
-                brainContainer.classList.add('sleep-deprived');
-                insightText.textContent = "After 24 hours of sleep deprivation, neural activity becomes irregular and diminished. Neurovascular coupling responses are impaired, functional connectivity between brain regions weakens, and the prefrontal cortex shows reduced activation during cognitive tasks.";
-                
-                // Update cognitive performance bars
-                bars.forEach((bar, index) => {
-                    const deprivedValue = bar.getAttribute('data-deprived');
-                    bar.style.width = deprivedValue + '%';
-                    values[index].textContent = deprivedValue + '%';
-                });
-            } else {
-                brainContainer.classList.remove('sleep-deprived');
-                insightText.textContent = "The well-rested brain shows robust neural activity across the prefrontal cortex, with strong connections between different brain regions. Neural oscillations are synchronized, and neurovascular coupling responses are optimal for cognitive tasks.";
-                
-                // Update cognitive performance bars
-                bars.forEach((bar, index) => {
-                    const restedValue = bar.getAttribute('data-rested');
-                    bar.style.width = restedValue + '%';
-                    values[index].textContent = restedValue + '%';
-                });
-            }
-        }
-
-        // Event listeners
-        document.getElementById('rested-btn').addEventListener('click', function() {
-            document.querySelectorAll('.state-button').forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            switchBrainState(false);
-        });
-
-        document.getElementById('deprived-btn').addEventListener('click', function() {
-            document.querySelectorAll('.state-button').forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            switchBrainState(true);
-        });
-
-        // Smooth scrolling
-        document.addEventListener('DOMContentLoaded', function() {
-            initBrainViz();
-            
-            // Add scroll-triggered animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            });
-
-            document.querySelectorAll('.section').forEach(section => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(50px)';
-                section.style.transition = 'all 0.8s ease';
-                observer.observe(section);
-            });
-        });
-    </script>
 </body>
 </html>

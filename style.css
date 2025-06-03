@@ -45,13 +45,22 @@ body {
     line-height: 1.6;
 }
 
+/* Scroll indicator for title page*/
 .scroll-indicator {
     position: absolute;
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     animation: bounce 2s infinite;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
+
+.scroll-indicator:hover {
+    transform: translateX(-50%) translateY(-10px);
+    opacity: 0.8;
+}
+
 
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
