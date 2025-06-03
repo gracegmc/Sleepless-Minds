@@ -272,7 +272,7 @@ body {
 /* Apply scroll snap to the website */
 html {
     scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
+    scroll-behavior: auto; /*change to "smooth" for smooth scrolling*/
 }
 
 body {
