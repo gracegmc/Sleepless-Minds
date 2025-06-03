@@ -269,7 +269,7 @@ body {
     100% { opacity: 0; }
 }
 
-/* Apply scroll snap to the body/html */
+/* Apply scroll snap to the website */
 html {
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
@@ -308,7 +308,7 @@ body {
     scroll-snap-align: start;
 }
 
-/* Optional: Add scroll snap stop to force stopping at each section */
+/* Add scroll snap stop to force stopping at each section */
 .hero,
 .section {
     scroll-snap-stop: always;
