@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" />
     <title>The Sleep-Deprived Brain</title>
-    <script type="module" src="global.js"></script>
+    <script src="clicker_game.js" defer></script>
+
 </head>
 <body>
     <div class="hero">
@@ -18,7 +19,33 @@
         </div>
     </div>
 
-    <div class="section" id="brain-section"> 
+    <div class="section" id="five-choice-test">
+    <div class="container">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px; color: #4a90e2;">5-Choice Reaction Time Test</h2>
+        <p style="text-align: center; font-size: 1.2rem; margin-bottom: 40px;">
+            A circle will light up randomly. Press the corresponding key (<strong>S D F J K</strong>) as fast as you can.
+            </p>
+
+            <br>
+    
+            <div id="rti-grid">
+                <div class="rti-option" data-key="s">S</div>
+                <div class="rti-option" data-key="d">D</div>
+                <div class="rti-option" data-key="f">F</div>
+                <div class="rti-option" data-key="j">J</div>
+                <div class="rti-option" data-key="k">K</div>
+            </div>
+
+            <br>
+
+            <div style="text-align: center; margin-top: 30px;">
+            <button id="start-rti-btn" class="state-button">Start Test</button>
+            </div>
+            <div id="rti-results" style="margin-top: 30px; text-align: center; display: none;"></div>
+        </div>
+        </div>
+
+    <!-- <div class="section" id="brain-section"> 
         <div class="container">
             <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px; color: #4a90e2;">Brain Activity Visualization</h2>
             
@@ -29,10 +56,8 @@
 
             <div class="brain-container" id="brain-viz">
                 <div class="brain-hemisphere brain-left">
-                    <!-- Activity nodes will be added by JavaScript -->
                 </div>
                 <div class="brain-hemisphere brain-right">
-                    <!-- Activity nodes will be added by JavaScript -->
                 </div>
             </div>
 
@@ -41,7 +66,7 @@
                 <p id="insight-text">The well-rested brain shows robust neural activity across the prefrontal cortex, with strong connections between different brain regions. Neural oscillations are synchronized, and neurovascular coupling responses are optimal for cognitive tasks.</p>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="section">
         <div class="container">
