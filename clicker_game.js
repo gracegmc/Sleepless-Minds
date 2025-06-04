@@ -18,12 +18,23 @@ let timeoutId = null;
 
 // Hardcoded equation parameters from generate_equation.py
 const equationData = {
+    coefficients: [0.2019567619160461,-0.11159644698692867,0.047276699318253394,0.04475002759484142,0.07457922918787746],
+    intercept: 0.08787269382473206, // Paste intercept here
+    feature_means: [0.2, 0.15, 350.525, 359.830985, 40.967735000000005], // Paste feature_means here
+    feature_stds: [0.4,0.3570714214271425,41.11735491249407,44.188320991041,17.57232964322816], // Paste feature_stds here
+    threshold: 0.5 // Paste threshold here
+};
+
+/*
+FIRST SET OF EQUATION, NOT WEIGHTED 
+const equationData = {
     coefficients: [0.5816567338115513,-0.4235715031234685,0.5597676483241671,0.45972478468901623,0.6106034118455002],
     intercept: 0.06747081312862788, // Paste intercept here
     feature_means: [0.2, 0.15, 350.525, 359.830985, 40.967735000000005], // Paste feature_means here
     feature_stds: [0.4,0.3570714214271425,41.11735491249407,44.188320991041,17.57232964322816], // Paste feature_stds here
     threshold: 0.5 // Paste threshold here
 };
+ */
 
 function hideGameText() {
     elementsToHide.forEach(el => el.style.display = 'none');
