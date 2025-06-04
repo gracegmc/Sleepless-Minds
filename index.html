@@ -14,63 +14,74 @@
     <div class="hero">
         <h1>Error 404: Sleep Not Found</h1>
         <p>Explore how 24 hours without sleep transforms neural activity, cognitive performance, and brain connectivity.</p>
-        <div class="scroll-indicator" id = 'scroll-down'>
+        <div class="scroll-indicator" id="scroll-down">
             <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 5v14M5 12l7 7 7-7"/>
             </svg>
         </div>
     </div>
 
-
     <section id="intro-data" class="section two-column-layout">
-  <div class="text-column">
-    <h2 style="text-align: center; font-size: 2.8rem; margin-bottom: 1.5rem; color: #4a90e2;">
-      Brain Activity Visualization
-    </h2>
+        <div class="text-column">
+            <h2 style="text-align: center; font-size: 2.8rem; margin-bottom: 1.5rem; color: #4a90e2;">
+                Brain Activity Visualization
+            </h2>
 
-    <br>
+            <br>
 
-    <p style="text-align: left; font-size: 1.2rem; margin-bottom: 2rem; line-height: 1.8;">
-      What actually happens when you stay awake for 24 hours straight? <br>
-      We looked at real data from a neuroscience study that recorded brain activity and cognitive performance
-      before and after sleep deprivation using something called <strong>fNIRS</strong>
-      (functional near-infrared spectroscopy).
-    </p>
+            <p style="text-align: left; font-size: 1.2rem; margin-bottom: 2rem; line-height: 1.8;">
+                What actually happens when you stay awake for 24 hours straight? <br>
+                We looked at real data from a neuroscience study that recorded brain activity and cognitive performance
+                before and after sleep deprivation using something called <strong>fNIRS</strong>
+                (functional near-infrared spectroscopy).
+            </p>
 
-    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
-      Basically, scientists tracked blood flow in the brain while people did tasks like tapping their fingers
-      and reacting to visual prompts. They also ran detailed memory and reaction tests using a touchscreen device.
-    </p>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                Basically, scientists tracked blood flow in the brain while people did tasks like tapping their fingers
+                and reacting to visual prompts. They also ran detailed memory and reaction tests using a touchscreen device.
+            </p>
 
-    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
-      The result? Sleep-deprived brains struggle — especially in areas that control decision-making, memory, and attention.
-    </p>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                The result? Sleep-deprived brains struggle — especially in areas that control decision-making, memory, and attention.
+            </p>
 
-    <p style="font-size: 1.1rem; line-height: 1.8;">
-      So before you flex that all-nighter, maybe take a look at what it does to your brain.
-    </p>
-  </div>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                So before you flex that all-nighter, maybe take a look at what it does to your brain.
+            </p>
+        </div>
 
-  <div class="brain-column">
-    <!-- Placeholder for 3D brain scan -->
-    <div id="brain-3d-placeholder">
-      <p style="text-align: center; color: #aaa;">🧠 3D Brain Loading...</p>
-    </div>
-  </div>
-</section>
+        <!-- Brain Embed from Sketchfab -->
+        <div class="brain-column">
+            <div class="sketchfab-embed-wrapper">
+                <iframe 
+                    title="Colour-Coded Brain" 
+                    frameborder="0" 
+                    allowfullscreen 
+                    mozallowfullscreen="true" 
+                    webkitallowfullscreen="true" 
+                    allow="autoplay; fullscreen; xr-spatial-tracking" 
+                    xr-spatial-tracking 
+                    execution-while-out-of-viewport 
+                    execution-while-not-rendered 
+                    web-share 
+                    src="https://sketchfab.com/models/4f41eab426334fb8b26bee10566cc00e/embed?autostart=1&ui_theme=dark"
+                    width="100%" 
+                    height="400">
+                </iframe>
+            </div>
+        </div>
 
-
-
+    </section>
 
     <div class="section" id="five-choice-test">
-    <div class="container">
-        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px; color: #4a90e2;">5-Choice Reaction Time Test</h2>
-        <p style="text-align: center; font-size: 1.2rem; margin-bottom: 40px;">
-            A circle will light up randomly. Press the corresponding key (<strong>S D F J K</strong>) as fast as you can.
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px; color: #4a90e2;">5-Choice Reaction Time Test</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 40px;">
+                A circle will light up randomly. Press the corresponding key (<strong>S D F J K</strong>) on your keyboard as fast as you can.
             </p>
 
             <br>
-    
+
             <div id="rti-grid">
                 <div class="rti-option" data-key="s">S</div>
                 <div class="rti-option" data-key="d">D</div>
@@ -82,34 +93,11 @@
             <br>
 
             <div style="text-align: center; margin-top: 30px;">
-            <button id="start-rti-btn" class="state-button">Start Test</button>
+                <button id="start-rti-btn" class="state-button">Start Test</button>
             </div>
             <div id="rti-results" style="margin-top: 30px; text-align: center; display: none;"></div>
         </div>
-        </div>
-
-    <!-- <div class="section" id="brain-section"> 
-        <div class="container">
-            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px; color: #4a90e2;">Brain Activity Visualization</h2>
-            
-            <div class="controls">
-                <button class="state-button active" id="rested-btn">Well-Rested Brain</button>
-                <button class="state-button" id="deprived-btn">Sleep-Deprived Brain</button>
-            </div>
-
-            <div class="brain-container" id="brain-viz">
-                <div class="brain-hemisphere brain-left">
-                </div>
-                <div class="brain-hemisphere brain-right">
-                </div>
-            </div>
-
-            <div class="insights">
-                <h3>Neural Activity Patterns</h3>
-                <p id="insight-text">The well-rested brain shows robust neural activity across the prefrontal cortex, with strong connections between different brain regions. Neural oscillations are synchronized, and neurovascular coupling responses are optimal for cognitive tasks.</p>
-            </div>
-        </div>
-    </div> -->
+    </div>
 
     <div class="section">
         <div class="container">
