@@ -404,3 +404,28 @@ body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   letter-spacing: 2px;
 }
+
+#rti-results {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 30px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+#rti-results h3 {
+    color: #4a90e2;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+#rti-results p {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+#rti-results p strong {
+    color: #ffffff;
+}
