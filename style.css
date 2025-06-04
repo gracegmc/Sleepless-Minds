@@ -362,8 +362,6 @@ body {
 }
 
 
-
-
 /* five-choice test */
     #rti-grid {
     display: flex;
@@ -381,7 +379,7 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 3rem;
-    /*transition: background 0.3s ease;*/ /*removed to fasten reaction time*/
+    /*transition: background 0.3s ease;*/
   }
   .rti-option.active {
     background: #4a90e2;
@@ -428,4 +426,31 @@ body {
 
 #rti-results p strong {
     color: #ffffff;
+    font-weight: bold;
+}
+
+#rti-results canvas {
+    width: 800px !important;
+    height: 500px !important;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+#rti-results .fun-fact {
+    margin-top: 20px;
+}
+
+#rti-results .fun-fact h4 {
+    color: #4a90e2;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+#rti-results .fun-fact p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ffffff;
+    opacity: 0.9;
 }

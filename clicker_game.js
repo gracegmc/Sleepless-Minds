@@ -184,27 +184,109 @@ function endTest() {
     const metrics = calculateMetrics();
     const classification = classifySleepDeprivation(metrics);
 
-    // Update RT.json in-memory for display
-    const rtData = { median_reaction_time: metrics.median_reaction_time };
+    // Prepare error messages
+    let errorMessages = [];
+    if (errorsIncorrect === 0 && errorsPremature === 0 && errorsNoResponse === 0) {
+        errorMessages.push("No mistakes/typos, nice!");
+    } else {
+        if (errorsIncorrect > 0) {
+            errorMessages.push(`Oops, pressed incorrect key <strong>${errorsIncorrect}</strong> times`);
+        }
+        if (errorsNoResponse > 0) {
+            errorMessages.push(`Uhmmm, missed <strong>${errorsNoResponse}</strong> key(s)`);
+        }
+        if (errorsPremature > 0) {
+            errorMessages.push(`Too excited, pressed <strong>${errorsPremature}</strong> key(s) early`);
+        }
+    }
 
+    // Create canvas for scatter plot
+    const canvasId = 'reactionTimeChart';
+    const errorHTML = errorMessages.map(msg => `<p>${msg}</p>`).join('');
     resultBox.style.display = 'block';
     resultBox.innerHTML = `
         <h3>Your Results</h3>
+        <p>Average Reaction Time: <strong>${metrics.mean_reaction_time.toFixed(2)} ms</strong></p>
         <p>Median Reaction Time: <strong>${metrics.median_reaction_time.toFixed(2)} ms</strong></p>
-        <p>Mean Reaction Time: <strong>${metrics.mean_reaction_time.toFixed(2)} ms</strong></p>
-        <p>Reaction Time Std Dev: <strong>${metrics.reaction_time_std.toFixed(2)} ms</strong></p>
-        <p>Incorrect Errors: <strong>${metrics.simple_errors_incorrect}</strong></p>
-        <p>Premature Errors: <strong>${metrics.simple_errors_premature}</strong></p>
-        <p>No-Response Errors: <strong>${metrics.simple_errors_no_response}</strong></p>
+        ${errorHTML}
         <p>Correct Trials: <strong>${reactionTimes.length}</strong></p>
         <p><strong>${classification.status}</strong> (Probability: ${classification.probability.toFixed(4)})</p>
+        <canvas id="${canvasId}" width="800" height="500"></canvas>
+        <div class="fun-fact">
+            <h4>Fun Fact</h4>
+            <p>On average, F1 drivers have 250ms reaction time and Olympic sprinters have 160ms 🤯</p>
+        </div>
     `;
+
+    // Hardcoded group average reaction time (placeholder)
+    const groupAvgRT = classification.prediction === 1 ? 350 : 300; // ms, adjust based on group
+
+    // Create scatter plot with Chart.js
+    const ctx = document.getElementById(canvasId).getContext('2d');
+    new Chart(ctx, {
+        type: 'scatter',
+        data: {
+            datasets: [
+                {
+                    label: 'Your Reaction Times',
+                    data: reactionTimes.map((rt, i) => ({ x: i + 1, y: rt })),
+                    backgroundColor: '#4a90e2',
+                    borderColor: '#4a90e2',
+                    showLine: true,
+                    pointRadius: 5,
+                    borderWidth: 2
+                },
+                {
+                    label: `Group ${classification.prediction} Avg RT`,
+                    data: [
+                        { x: 1, y: groupAvgRT },
+                        { x: reactionTimes.length, y: groupAvgRT }
+                    ],
+                    borderColor: '#ff6b6b',
+                    borderWidth: 2,
+                    showLine: true,
+                    pointRadius: 0
+                },
+                {
+                    label: 'Your Avg RT',
+                    data: [
+                        { x: 1, y: metrics.mean_reaction_time },
+                        { x: reactionTimes.length, y: metrics.mean_reaction_time }
+                    ],
+                    borderColor: '#7b68ee',
+                    borderWidth: 2,
+                    showLine: true,
+                    pointRadius: 0
+                }
+            ]
+        },
+        options: {
+            responsive: false, // Set to false to use fixed dimensions
+            scales: {
+                x: {
+                    title: { display: true, text: 'Key Press Order', color: '#ffffff' },
+                    ticks: { color: '#ffffff' },
+                    grid: { borderColor: '#ffffff' }
+                },
+                y: {
+                    title: { display: true, text: 'Reaction Time (ms)', color: '#ffffff' },
+                    ticks: { color: '#ffffff' },
+                    grid: { borderColor: '#ffffff' },
+                    suggestedMin: 0,
+                    suggestedMax: Math.max(...reactionTimes, groupAvgRT, metrics.mean_reaction_time) + 50
+                }
+            },
+            plugins: {
+                legend: { labels: { color: '#ffffff' } }
+            }
+        }
+    });
 
     showGameText();
     startBtn.disabled = false;
 
-    // Log RT.json update (in-memory, not saved)
-    console.log("RT.json update (in-memory):", rtData);
+    // Log RT.json update (in-memory)
+    console.log("RT.json update (in-memory):", { median_reaction_time: metrics.median_reaction_time });
 }
 
 function handleKeyPress(e) {
@@ -213,7 +295,6 @@ function handleKeyPress(e) {
     if (!validKeys.includes(key)) return;
 
     if (!acceptingInput && currentRound < totalRounds) {
-        // Premature key press
         errorsPremature++;
         return;
     }
