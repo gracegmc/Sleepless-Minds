@@ -1,0 +1,11 @@
+Model Information:
+* title:	Brain Project
+* source:	https://sketchfab.com/3d-models/brain-project-24ec03412dd8432bb0d3e750a72608e0
+* author:	Dean Lavery (https://sketchfab.com/dean.lavery)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Brain Project" (https://sketchfab.com/3d-models/brain-project-24ec03412dd8432bb0d3e750a72608e0) by Dean Lavery (https://sketchfab.com/dean.lavery) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

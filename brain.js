@@ -1,124 +1,110 @@
-import * as THREE from 'https://esm.sh/three@0.155.0';
-import { GLTFLoader } from 'https://esm.sh/three@0.155.0/examples/jsm/loaders/GLTFLoader.js';
+//Import the THREE.js library
+import * as THREE from "https://cdn.skypack.dev/three@0.129.0/build/three.module.js";
+// To allow for the camera to move around the scene
+import { OrbitControls } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/controls/OrbitControls.js";
+// To allow for importing the .gltf file
+import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
 
+// Get the container element
+const container = document.getElementById("container3D");
+const containerWidth = container.clientWidth;
+const containerHeight = container.clientHeight;
 
-const canvas = document.getElementById('brainCanvas');
-const tooltip = document.getElementById('tooltip');
+//Create a Three.JS Scene
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+//create a new camera with positions and angles - use container dimensions
+const camera = new THREE.PerspectiveCamera(35, containerWidth / containerHeight, 0.1, 1000);
 
-const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2();
+//Keep track of the mouse position, so we can make the eye move
+let mouseX = containerWidth / 2;
+let mouseY = containerHeight / 2;
 
-// Lighting
-const light = new THREE.DirectionalLight(0xffffff, 1);
-light.position.set(1, 2, 3);
-scene.add(light);
+//Keep the 3D object on a global variable so we can access it later
+let object;
 
-// Load brain model
+//OrbitControls allow the camera to move around the scene
+let controls;
+
+//Set which object to render
+let objToRender = 'brain_hologram';
+
+//Instantiate a loader for the .gltf file
 const loader = new GLTFLoader();
-let brainModel;
-loader.load('brain.glb', function (gltf) {
-  brainModel = gltf.scene;
-  scene.add(brainModel);
-}, undefined, function (error) {
-  console.error(error);
-});
 
-// Camera
-camera.position.z = 2;
-
-// Mouse move listener
-let lastMouseEvent;
-window.addEventListener('mousemove', (event) => {
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-  mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
-  lastMouseEvent = event;
-});
-
-// Initialize brain visualization
-function initBrainViz() {
-  // render a 3D brain
-  // call addNodes()
-}
-
-function addNodes(){
-  // adds highlighted nodes based on dataset
-}
-
-function updateBrainVisuals(isDeprived) {
-  if (!brainModel) return;
-  brainModel.traverse((child) => {
-    if (child.isMesh) {
-      child.material.color.set(isDeprived ? 0x888888 : 0x4a90e2);
-    }
-  });
-}
-
-// State switching functionality
-function switchBrainState(isDeprived) {
-  const brainContainer = document.getElementById('brain-viz');
-  const insightText = document.getElementById('insight-text');
-  const bars = document.querySelectorAll('.bar-fill');
-  const values = document.querySelectorAll('.metric-value');
-
-  if (isDeprived) {
-      brainContainer.classList.add('sleep-deprived');
-      insightText.textContent = "After 24 hours of sleep deprivation, neural activity becomes irregular and diminished. Neurovascular coupling responses are impaired, functional connectivity between brain regions weakens, and the prefrontal cortex shows reduced activation during cognitive tasks.";
-      
-      // Update cognitive performance bars
-      bars.forEach((bar, index) => {
-          const deprivedValue = bar.getAttribute('data-deprived');
-          bar.style.width = deprivedValue + '%';
-          values[index].textContent = deprivedValue + '%';
-      });
-      updateBrainVisuals(isDeprived);
-  } else {
-      brainContainer.classList.remove('sleep-deprived');
-      insightText.textContent = "The well-rested brain shows robust neural activity across the prefrontal cortex, with strong connections between different brain regions. Neural oscillations are synchronized, and neurovascular coupling responses are optimal for cognitive tasks.";
-      
-      // Update cognitive performance bars
-      bars.forEach((bar, index) => {
-          const restedValue = bar.getAttribute('data-rested');
-          bar.style.width = restedValue + '%';
-          values[index].textContent = restedValue + '%';
-      });
+//Load the file
+loader.load(
+  `assets/${objToRender}/scene.gltf`,
+  function (gltf) {
+    //If the file is loaded, add it to the scene
+    object = gltf.scene;
+    //Scale the object to make it bigger
+    object.scale.set(2, 2, 2);
+    //Position the brain lower in the container
+    object.position.y = -1;
+    scene.add(object);
+  },
+  function (xhr) {
+    //While it is loading, log the progress
+    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+  },
+  function (error) {
+    //If there is an error, log it
+    console.error(error);
   }
+);
+
+//Instantiate a new renderer and set its size to container dimensions
+const renderer = new THREE.WebGLRenderer({ alpha: true }); //Alpha: true allows for the transparent background
+renderer.setSize(containerWidth, containerHeight);
+
+//Add the renderer to the DOM
+container.appendChild(renderer.domElement);
+
+//Set how far the camera will be from the 3D model - moved closer to make brain bigger
+camera.position.z = objToRender === "brain_hologram" ? 5 : 500;
+
+//Add lights to the scene, so we can actually see the 3D model
+const topLight = new THREE.DirectionalLight(0xffffff, 1); // (color, intensity)
+topLight.position.set(500, 500, 500) //top-left-ish
+topLight.castShadow = true;
+scene.add(topLight);
+
+const ambientLight = new THREE.AmbientLight(0x333333, objToRender === "brain_hologram" ? 2.5 : 1);
+scene.add(ambientLight);
+
+//This adds controls to the camera, so we can rotate / zoom it with the mouse  
+if (objToRender === "brain_hologram") {
+  controls = new OrbitControls(camera, renderer.domElement);
+  // Configure OrbitControls for better interaction
+  controls.enableDamping = true; // Smooth camera movement
+  controls.dampingFactor = 0.05;
+  controls.enableZoom = true; // Allow zoom with scroll wheel
+  controls.enableRotate = true; // Allow rotation with mouse drag
+  controls.enablePan = false; // Disable panning to keep brain centered
+  controls.autoRotate = false; // Disable auto rotation
 }
 
-// Event listeners
-document.getElementById('rested-btn').addEventListener('click', function() {
-  document.querySelectorAll('.state-button').forEach(btn => btn.classList.remove('active'));
-  this.classList.add('active');
-  switchBrainState(false);
-});
-
-document.getElementById('deprived-btn').addEventListener('click', function() {
-  document.querySelectorAll('.state-button').forEach(btn => btn.classList.remove('active'));
-  this.classList.add('active');
-  switchBrainState(true);
-});
-
-// Animate
+//Render the scene
 function animate() {
   requestAnimationFrame(animate);
-  if (brainModel) {
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects(brainModel.children, true);
-    
-    if (intersects.length > 0 && lastMouseEvent) {
-      tooltip.style.display = 'block';
-      tooltip.style.left = lastMouseEvent.clientX + 10 + 'px';
-      tooltip.style.top = lastMouseEvent.clientY + 10 + 'px';
-      tooltip.innerHTML = intersects[0].object.name || 'Brain Region';
-    } else {
-      tooltip.style.display = 'none';
-    }    
+  
+  // Update controls for smooth damping
+  if (controls) {
+    controls.update();
   }
-
+  
   renderer.render(scene, camera);
 }
+
+//Add a listener to the window, so we can resize the window and the camera
+window.addEventListener("resize", function () {
+  const newWidth = container.clientWidth;
+  const newHeight = container.clientHeight;
+  
+  camera.aspect = newWidth / newHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(newWidth, newHeight);
+});
+
+//Start the 3D rendering
 animate();
