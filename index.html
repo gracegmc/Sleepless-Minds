@@ -10,6 +10,7 @@
     <link rel="icon" href="./assets/flavicon.svg" type="image/svg+xml" />
     <script type="module" src="global.js"></script>
     <script type="module" src="brain.js"></script>
+    <script src="plots.js" defer></script>
 
 </head>
 <body>
@@ -137,6 +138,27 @@
                 <h3>Performance Degradation</h3>
                 <p>Sleep deprivation significantly impacts cognitive performance across all measured domains. The most severe declines are observed in paired learning (-45%) and spatial working memory (-39%), reflecting the critical role of sleep in memory consolidation and executive function.</p>
             </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px; color: #4a90e2;">Brain Activity Line Plots</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 40px;">
+                Click on any plot to view it in detail. These plots show the changes in oxygenated (HbO) and deoxygenated (HbR) hemoglobin levels before and after sleep deprivation.
+            </p>
+            
+            <div class="plots-grid" id="plots-grid">
+                <!-- Plots will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for enlarged plot view -->
+    <div id="plot-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-plot-container"></div>
         </div>
     </div>
 
