@@ -607,3 +607,386 @@ body {
     width: 100%;
     height: 100%;
 }
+
+/* ===== PLOTLY INTEGRATION CSS ===== */
+
+/* Plot Controls */
+.plot-controls {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.control-group {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.control-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 200px;
+}
+
+.control-item label {
+    font-weight: 600;
+    color: #4a90e2;
+    font-size: 0.9rem;
+}
+
+.control-item select {
+    padding: 12px 15px;
+    border: 2px solid #4a90e2;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.control-item select:focus {
+    outline: none;
+    border-color: #357abd;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.plot-description {
+    text-align: center;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    border-left: 4px solid #4a90e2;
+}
+
+.plot-description p {
+    margin: 0;
+    line-height: 1.6;
+    color: #495057;
+}
+
+/* Main Plot Container - LARGE SIZE */
+.main-plot-container {
+    position: relative;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 40px;
+    width: 100%;
+    min-height: 700px;
+    height: 80vh; /* 80% of viewport height - THIS MAKES IT LARGE */
+    max-height: 900px;
+}
+
+/* Main Plot Iframe - Fill the container */
+#main-plot-iframe {
+    width: 100%;
+    height: 100%; /* Fill the entire container */
+    border: none;
+    display: block;
+    min-height: 700px;
+}
+
+.plot-loading, .plot-error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 10;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #4a90e2;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.plot-error p {
+    color: #dc3545;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Plot Overview Section */
+.plots-overview {
+    margin-top: 50px;
+}
+
+.plots-overview h3 {
+    text-align: center;
+    color: #4a90e2;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+/* Update existing plots-grid for thumbnails */
+.plots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+/* Plot Thumbnails */
+.plot-thumbnail {
+    position: relative;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.plot-thumbnail:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+}
+
+.plot-thumbnail.active {
+    border-color: #4a90e2;
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+}
+
+.thumbnail-header {
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.thumbnail-header h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.thumbnail-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.thumbnail-iframe {
+    width: 100%;
+    height: 200px; /* Keep thumbnails smaller */
+    border: none;
+    display: block;
+}
+
+.thumbnail-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 20px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.plot-thumbnail:hover .thumbnail-overlay {
+    opacity: 1;
+}
+
+.thumbnail-overlay span {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Scientific Insights */
+.plot-insights {
+    margin-top: 50px;
+    padding: 30px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+}
+
+.plot-insights h3 {
+    text-align: center;
+    color: #4a90e2;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.insight-item {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #4a90e2;
+}
+
+.insight-item h4 {
+    color: #4a90e2;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.insight-item p {
+    margin: 0;
+    line-height: 1.6;
+    color: #495057;
+}
+
+/* Fullscreen functionality */
+.fullscreen-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(74, 144, 226, 0.9);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    z-index: 20;
+    transition: background 0.3s ease;
+}
+
+.fullscreen-btn:hover {
+    background: rgba(74, 144, 226, 1);
+}
+
+.main-plot-container.fullscreen {
+    height: 95vh;
+    max-height: none;
+    position: fixed;
+    top: 2.5vh;
+    left: 2.5vw;
+    width: 95vw;
+    z-index: 1000;
+    border-radius: 10px;
+}
+
+.main-plot-container.fullscreen #main-plot-iframe {
+    height: 100%;
+}
+
+/* Responsive Design for Plotly */
+@media (max-width: 1200px) {
+    .main-plot-container {
+        height: 75vh;
+        min-height: 600px;
+    }
+    
+    #main-plot-iframe {
+        min-height: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .control-group {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .control-item {
+        min-width: auto;
+        width: 100%;
+    }
+    
+    .main-plot-container {
+        height: 70vh;
+        min-height: 500px;
+    }
+    
+    #main-plot-iframe {
+        min-height: 500px;
+    }
+    
+    .plots-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .thumbnail-iframe {
+        height: 150px;
+    }
+    
+    .insights-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .plot-controls {
+        padding: 20px;
+    }
+    
+    .plot-insights {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .control-item select {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .thumbnail-header {
+        padding: 12px 15px;
+    }
+    
+    .thumbnail-header h4 {
+        font-size: 0.9rem;
+    }
+    
+    .thumbnail-badge {
+        font-size: 0.7rem;
+        padding: 3px 6px;
+    }
+    
+    .insight-item {
+        padding: 20px;
+    }
+    
+    .main-plot-container {
+        height: 60vh;
+        min-height: 400px;
+    }
+    
+    #main-plot-iframe {
+        min-height: 400px;
+    }
+    
+    .thumbnail-iframe {
+        height: 120px;
+    }
+}
