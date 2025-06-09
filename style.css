@@ -883,7 +883,7 @@ body {
     border-radius: 10px;
     font-size: 1rem;
     transition: all 0.3s ease;
-    appearance: none;
+    /* appearance: none; */
 }
 
 .control-item select:hover {
