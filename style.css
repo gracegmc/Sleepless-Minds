@@ -442,25 +442,39 @@ body {
     }
 }
 
-/* ===== Pre-plotly intro INTEGRATION CSS ===== */
+/* ===== Pre-plotly INTRO CSS ===== */
+/* ===== Styled Info Box to Match Plot Section ===== */
 .info-box {
-    background-color: #f9f9f9;
+    background: rgba(255, 255, 255, 0.05);
     border-left: 6px solid #4a90e2;
-    padding: 20px;
+    padding: 30px;
     margin-bottom: 40px;
-    border-radius: 8px;
-    color: #333;
+    border-radius: 20px;
+    color: #e0e0e0;
     font-size: 1.1rem;
     line-height: 1.6;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(74, 144, 226, 0.1);
+    transition: all 0.3s ease;
 }
+
 .info-box h3 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-top: 30px;
+    font-size: 1.6rem;
+    color: #ffffff;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
-.tldr {
+
+.info-box p {
+    margin: 10px 0;
+    color: #ccc;
+}
+
+.info-box .tldr {
     font-style: italic;
+    color: #a0cfff;
 }
+
 
 /* ===== PLOTLY INTEGRATION CSS ===== */
 /* Plot Controls */
@@ -834,5 +848,112 @@ body {
     
     .thumbnail-iframe {
         height: 120px;
+    }
+}
+
+/* === Brain Activity Plots Section === */
+.plot-controls {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(74, 144, 226, 0.1);
+    transition: all 0.3s ease;
+}
+
+.control-group {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.control-item label {
+    font-size: 1.2rem;
+    margin-right: 10px;
+    color: #ffffff;
+}
+
+.control-item select {
+    padding: 10px 20px;
+    border: 2px solid #4a90e2;
+    background: rgba(74, 144, 226, 0.1);
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    appearance: none;
+}
+
+.control-item select:hover {
+    background: rgba(74, 144, 226, 0.2);
+    cursor: pointer;
+}
+
+.plot-description {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.plot-description p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #ccc;
+    margin: 10px 0;
+}
+
+.plot-description p strong {
+    color: inherit;
+}
+
+.main-plot-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(123, 104, 238, 0.1);
+}
+
+#main-plot-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 16px;
+    background-color: #1a1a2e;
+}
+
+.plot-loading, .plot-error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.85);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    border-radius: 16px;
+    text-align: center;
+    padding: 20px;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 6px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #4a90e2;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
     }
 }

@@ -206,11 +206,11 @@ function updatePlotDescription() {
     if (!plotDescription || !PLOT_TYPES[currentPlotType]) return;
     
     const plotInfo = PLOT_TYPES[currentPlotType];
-    plotDescription.innerHTML = `
-        <strong>${plotInfo.name}:</strong> ${plotInfo.description}<br>
-        <em>Blue lines = Before sleep deprivation, Red lines = After sleep deprivation</em><br>
-        Hover over lines for exact values, zoom in/out, and click legend items to toggle traces.
-    `;
+    // plotDescription.innerHTML = `
+    //     <strong>${plotInfo.name}:</strong> ${plotInfo.description}<br>
+    //     <em>Blue lines = Before sleep deprivation, Red lines = After sleep deprivation</em><br>
+    //     Hover over lines for exact values, zoom in/out, and click legend items to toggle traces.
+    // `;
 }
 
 function showLoading(show) {
