@@ -30,7 +30,7 @@ let currentSubject = '001';
 let currentPlotType = 'single_channel';
 
 // DOM elements
-let subjectSelector, plotTypeSelector, mainIframe, plotLoading, plotError, plotDescription;
+let subjectSelector, /*plotTypeSelector,*/ mainIframe, plotLoading, plotError, plotDescription;
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -42,14 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initializeElements() {
     subjectSelector = document.getElementById('subject-selector');
-    plotTypeSelector = document.getElementById('plot-type-selector');
+    // plotTypeSelector = document.getElementById('plot-type-selector');
     mainIframe = document.getElementById('main-plot-iframe');
     plotLoading = document.getElementById('plot-loading');
     plotError = document.getElementById('plot-error');
     plotDescription = document.getElementById('plot-description-text');
     
     // Validate that all elements exist
-    if (!subjectSelector || !plotTypeSelector || !mainIframe) {
+    if (!subjectSelector || !mainIframe) {
         console.error('Required DOM elements not found');
         return;
     }
@@ -68,16 +68,16 @@ function setupEventListeners() {
         });
     }
     
-    // Plot type selector change
-    if (plotTypeSelector) {
-        plotTypeSelector.addEventListener('change', (e) => {
-            currentPlotType = e.target.value;
-            console.log(`Selected plot type: ${currentPlotType}`);
-            loadMainPlot();
-            updatePlotDescription();
-            highlightActiveThumbnail();
-        });
-    }
+    // // Plot type selector change
+    // if (plotTypeSelector) {
+    //     plotTypeSelector.addEventListener('change', (e) => {
+    //         currentPlotType = e.target.value;
+    //         console.log(`Selected plot type: ${currentPlotType}`);
+    //         loadMainPlot();
+    //         updatePlotDescription();
+    //         highlightActiveThumbnail();
+    //     });
+    // }
     
     // Thumbnail click handlers
     setupThumbnailClickHandlers();
@@ -87,16 +87,16 @@ function setupThumbnailClickHandlers() {
     const thumbnails = document.querySelectorAll('.plot-thumbnail');
     
     thumbnails.forEach(thumbnail => {
-        thumbnail.addEventListener('click', () => {
-            const plotType = thumbnail.dataset.type;
-            if (plotType && PLOT_TYPES[plotType]) {
-                currentPlotType = plotType;
-                plotTypeSelector.value = plotType;
-                loadMainPlot();
-                updatePlotDescription();
-                highlightActiveThumbnail();
-            }
-        });
+        // thumbnail.addEventListener('click', () => {
+        //     const plotType = thumbnail.dataset.type;
+        //     if (plotType && PLOT_TYPES[plotType]) {
+        //         currentPlotType = plotType;
+        //         plotTypeSelector.value = plotType;
+        //         loadMainPlot();
+        //         updatePlotDescription();
+        //         highlightActiveThumbnail();
+        //     }
+        // });
         
         // Add hover effects
         thumbnail.addEventListener('mouseenter', () => {
@@ -180,8 +180,8 @@ function updateThumbnails() {
             
             // Update badge with current subject info
             const badge = thumbnail.querySelector('.thumbnail-badge');
-            if (badge && PLOT_TYPES[plotType]) {
-                badge.textContent = PLOT_TYPES[plotType].badge;
+            if (badge && currentPlotType) {
+                badge.textContent = currentPlotType.badge;
             }
         }
     });

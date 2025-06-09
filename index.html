@@ -14,6 +14,7 @@
 
 </head>
 <body>
+    <!-- landing page -->
     <div class="hero">
         <h1>Error 404: Sleep Not Found</h1>
         <p>Explore how 24 hours without sleep transforms neural activity, cognitive performance, and brain connectivity.</p>
@@ -24,31 +25,32 @@
         </div>
     </div>
 
+    <!-- Brain/Intro -->
     <section id="intro-data" class="section two-column-layout">
         <div class="text-column">
-            <h2 style="text-align: center; font-size: 2.8rem; margin-bottom: 1.5rem; color: #4a90e2;">
+            <h2>
                 Brain Activity Visualization
             </h2>
 
             <br>
 
-            <p style="text-align: left; font-size: 1.2rem; margin-bottom: 2rem; line-height: 1.8;">
+            <p>
                 What actually happens when you stay awake for 24 hours straight? <br>
                 We looked at real data from a neuroscience study that recorded brain activity and cognitive performance
                 before and after sleep deprivation using something called <strong>fNIRS</strong>
                 (functional near-infrared spectroscopy).
             </p>
 
-            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+            <p>
                 Basically, scientists tracked blood flow in the brain while people did tasks like tapping their fingers
                 and reacting to visual prompts. They also ran detailed memory and reaction tests using a touchscreen device.
             </p>
 
-            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+            <p>
                 The result? Sleep-deprived brains struggle — especially in areas that control decision-making, memory, and attention.
             </p>
 
-            <p style="font-size: 1.1rem; line-height: 1.8;">
+            <p>
                 So before you flex that all-nighter, maybe take a look at what it does to your brain.
             </p>
         </div>
@@ -60,10 +62,11 @@
 
     </section>
 
+    <!-- clicer game -->
     <div class="section" id="five-choice-test">
         <div class="container">
-            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px; color: #4a90e2;">5-Choice Reaction Time Test</h2>
-            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 40px;">
+            <h2>5-Choice Reaction Time Test</h2>
+            <p>
                 A circle will light up randomly. Press the corresponding key (<strong>S D F J K</strong>) on your keyboard as fast as you can.
             </p>
 
@@ -86,22 +89,66 @@
         </div>
     </div>
 
+    <!-- CANTAB bar chart -->
     <section class="section">
         <div class="container">
-            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px; color: #4a90e2;">
+            <h2>
                 Cognitive Domains Most Affected by Sleep Loss
             </h2>
             <canvas id="cantabChart" style="width: 100%; height: 500px;"></canvas>
 
-            <p style="text-align: center; margin-top: 1.5rem; font-size: 1.1rem;">
-                Negative values show how much worse people performed after sleep deprivation. Memory and attention suffer the most.
+            <p>
+                Negative values show how much worse people performed after sleep deprivation. 
+                Memory and attention suffer the most.
             </p>
         </div>
     </section>
 
     <div class="section">
         <div class="container">
-            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px; color: #4a90e2;">Interactive Brain Activity Plots</h2>
+            <!-- Scientific Background Information -->
+            <h2>Brain Activity Line Plots</h2>
+                <p class="section-subtitle">
+                    Play around with the toggles. See how the oxygenated (HbO) and deoxygenated (HbR) hemoglobin levels differ
+                    before and after sleep deprivation.
+                </p>
+
+                <div class="info-box">
+                    <h3>🧠 What Are HbO and HbR, and Why Should You Care?</h3>
+                    <p>
+                        Your brain needs oxygen to think, move, and process information. <strong>HbO (oxygenated hemoglobin)</strong> delivers oxygen to active brain areas, while <strong>HbR (deoxygenated hemoglobin)</strong> is what’s left after that oxygen is used up.
+                    </p>
+                    <p>
+                        By tracking HbO and HbR, we can observe which brain regions are more active. During tasks like finger tapping, HbO typically increases, while HbR decreases slightly or follows a mirrored pattern. This change—called a <strong>neurovascular response</strong>—signals healthy oxygen flow and brain activation.
+                    </p>
+
+                    <h3>😴 What Changes After Sleep Deprivation?</h3>
+                    <p>
+                        After 24 hours without sleep, we saw a consistent <strong>increase in HbO</strong> and more erratic <strong>HbR fluctuations</strong>. In the plots, red lines (after SD) rise above blue lines (before SD), reflecting this shift.
+                    </p>
+                    <p>
+                        The rise in HbO means the brain is pushing harder—it's trying to stay engaged, but with less efficiency. Meanwhile, the unstable HbR response shows that while the system is still delivering and removing blood, it’s doing so less effectively.
+                    </p>
+                    <p>
+                        In simpler terms: your brain is still doing the work, but it takes more "fuel" to get the same job done. Think of it like riding a bike with a flat tire—possible, but harder, slower, and more exhausting.
+                    </p>
+
+                    <p>
+                        In short: <strong>Higher HbO = more effort</strong>. <strong>Fluctuating HbR = reduced efficiency</strong>. These patterns reflect a tired brain working overtime just to keep up.
+                    </p>
+
+                    <p class="tldr">
+                        TL;DR: Your brain still functions after sleep loss—but it’s running on low power. These signals explain why sleep-deprived brains have trouble with focus, memory, and quick thinking. Be kind to your brain—<strong>sleep is non-negotiable</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PLOTLY -->
+    <div class="section">
+        <div class="container">
+            <h2>Interactive Brain Activity Plots</h2>
             
             <!-- Control Panel -->
             <div class="plot-controls">
@@ -120,7 +167,7 @@
                         </select>
                     </div>
                     
-                    <div class="control-item">
+                    <!-- <div class="control-item">
                         <label for="plot-type-selector">Analysis Type:</label>
                         <select id="plot-type-selector">
                             <option value="single_channel">Single Channel</option>
@@ -128,7 +175,7 @@
                             <option value="motor">Motor Region</option>
                             <option value="parietal">Parietal Region</option>
                         </select>
-                    </div>
+                    </div> -->
                 </div>
                 
                 <div class="plot-description">
@@ -138,52 +185,23 @@
                         <strong>Red lines = After sleep deprivation</strong>. Hover over lines for exact values, zoom in/out, and click legend items to toggle traces.
                     </p>
                 </div>
-            </div>
 
-            <!-- Scientific Background Information -->
-            <div style="background-color: #f9f9f9; border-left: 6px solid #4a90e2; padding: 20px; margin-bottom: 40px; border-radius: 8px;">
-                <h3 style="color: #333; font-size: 1.5rem;">🧠 What Are HbO and HbR, and Why Should You Care?</h3>
-                <p style="font-size: 1.1rem; line-height: 1.6; color: #333;">
-                    Your brain needs oxygen to think, move, and process. <strong>HbO (oxygenated hemoglobin)</strong> brings oxygen to active brain areas, while <strong>HbR (deoxygenated hemoglobin)</strong> is what remains after that oxygen is used.
-                </p>
-                <p style="font-size: 1.1rem; line-height: 1.6; color: #333;">
-                    Tracking these levels tells us how engaged different parts of the brain are. During focused activity—like finger tapping—HbO usually rises, while HbR drops or follows a complementary wave. This is a normal <strong>neurovascular response</strong> that reflects efficient oxygen delivery and usage.
-                </p>
-
-                <h3 style="color: #333; font-size: 1.5rem; margin-top: 30px;">😴 What Happens After Sleep Deprivation?</h3>
-                <p style="font-size: 1.1rem; line-height: 1.6; color: #333;">
-                    After 24 hours without sleep, both HbO and HbR levels show a drop in amplitude. In the graph, this is seen as the red lines (after SD) consistently falling below the blue lines (before SD).
-                </p>
-                <p style="font-size: 1.1rem; line-height: 1.6; color: #333;">
-                    The <strong>HbO decrease</strong> suggests reduced brain activation—your brain isn't "lighting up" as much in response to tasks. But the <strong>HbR pattern remains smooth and predictable</strong>, just lower overall. That means the mechanism of blood flow and oxygen exchange is still working, but at a lower capacity.
-                </p>
-                <p style="font-size: 1.1rem; line-height: 1.6; color: #333;">
-                    In simpler terms: your brain is trying to do its job, but with less energy. Like a phone on low battery, it still runs—just slower and less effectively.
-                </p>
-
-                <p style="font-size: 1.1rem; line-height: 1.6; color: #333;">
-                    So? <strong>Lower HbO = lower brain activation.</strong> <strong>Lower HbR = less oxygen being consumed.</strong> Together, they reflect an overall drop in mental effort and capacity. That's why sleep-deprived brains often struggle with focus, memory, and reaction time.
-                </p>
-
-                <p style="font-size: 1.1rem; line-height: 1.6; font-style: italic; color: #333;">
-                    TL;DR: The brain still functions after sleep loss—but at reduced power. These hemodynamic signals prove why rest matters for performance. Be kind to your brain. Sleep is non-negotiable.
-                </p>
-            </div>
-
-            <!-- Main Plot Display -->
-            <div class="main-plot-container">
-                <iframe id="main-plot-iframe" 
-                        src="website_plots/subject_001_single_channel.html" 
-                        frameborder="0">
-                </iframe>
-                <div class="plot-loading" id="plot-loading" style="display: none;">
-                    <div class="loading-spinner"></div>
-                    <p>Loading plot...</p>
-                </div>
-                <div class="plot-error" id="plot-error" style="display: none;">
-                    <p>⚠️ Plot not available. Make sure you've exported the plots from Jupyter.</p>
+                <!-- Main Plot Display -->
+                <div class="main-plot-container">
+                    <iframe id="main-plot-iframe" 
+                            src="website_plots/subject_001_single_channel.html" 
+                            frameborder="0">
+                    </iframe>
+                    <div class="plot-loading" id="plot-loading" style="display: none;">
+                        <div class="loading-spinner"></div>
+                        <p>Loading plot...</p>
+                    </div>
+                    <div class="plot-error" id="plot-error" style="display: none;">
+                        <p>⚠️ Plot not available. Make sure you've exported the plots from Jupyter.</p>
+                    </div>
                 </div>
             </div>
+        </div>
     </div>
 
 </body>

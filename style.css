@@ -33,6 +33,19 @@ h1 {
     animation: glow 3s ease-in-out infinite alternate;
 }
 
+h2 {
+    text-align: center; 
+    font-size: 2.8rem; 
+    margin-bottom: 1.5rem; 
+    color: #4a90e2;
+}
+
+p{
+    text-align: center; 
+    font-size: 1.2rem; 
+    margin-bottom: 40px;
+}
+
 @keyframes glow {
     from { text-shadow: 0 0 20px rgba(74, 144, 226, 0.5); }
     to { text-shadow: 0 0 30px rgba(123, 104, 238, 0.8); }
@@ -81,6 +94,7 @@ h1 {
     width: 100%;
 }
 
+/* BRAIN/INTRO */
 .brain-container {
     position: relative;
     width: 100%;
@@ -88,74 +102,20 @@ h1 {
     margin: 40px 0;
 }
 
-.brain-hemisphere {
-    position: absolute;
-    width: 280px;
-    height: 400px;
-    border-radius: 140px 140px 100px 100px;
-    border: 3px solid rgba(74, 144, 226, 0.6);
-    transition: all 0.8s ease;
+#intro-data p {
+    text-align: left; 
+    font-size: 1.2rem; 
+    margin-bottom: 2rem; 
+    line-height: 1.8;
 }
 
-.brain-left {
-    left: 20%;
-    background: linear-gradient(135deg, rgba(74, 144, 226, 0.2), rgba(123, 104, 238, 0.1));
-}
-
-.brain-right {
-    right: 20%;
-    background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 154, 0, 0.1));
-}
-
-.activity-node {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #4a90e2;
-    box-shadow: 0 0 15px rgba(74, 144, 226, 0.8);
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { 
-        transform: scale(1);
-        box-shadow: 0 0 15px rgba(74, 144, 226, 0.8);
-    }
-    50% { 
-        transform: scale(1.3);
-        box-shadow: 0 0 25px rgba(74, 144, 226, 1);
-    }
-    100% { 
-        transform: scale(1);
-        box-shadow: 0 0 15px rgba(74, 144, 226, 0.8);
-    }
-}
-
-.sleep-deprived .activity-node {
-    background: #ff6b6b;
-    box-shadow: 0 0 10px rgba(255, 107, 107, 0.6);
-    animation: dimPulse 3s infinite;
-}
-
-@keyframes dimPulse {
-    0%, 100% { 
-        opacity: 0.3;
-        transform: scale(0.8);
-    }
-    50% { 
-        opacity: 0.7;
-        transform: scale(1);
-    }
-}
-
+/* clicker game */
 .controls {
     display: flex;
     justify-content: center;
     gap: 30px;
     margin: 40px 0;
 }
-
 .state-button {
     padding: 15px 30px;
     border: 2px solid rgba(74, 144, 226, 0.6);
@@ -167,46 +127,30 @@ h1 {
     font-size: 1.1rem;
     font-weight: 600;
 }
-
 .state-button:hover {
     background: rgba(74, 144, 226, 0.3);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
 }
-
 .state-button.active {
     background: rgba(74, 144, 226, 0.5);
     box-shadow: 0 0 20px rgba(74, 144, 226, 0.5);
 }
-
-.cognitive-chart {
-    width: 100%;
-    height: 400px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    margin: 40px 0;
-    padding: 20px;
-    backdrop-filter: blur(10px);
-}
-
 .chart-title {
     text-align: center;
     font-size: 1.5rem;
     margin-bottom: 20px;
     color: #4a90e2;
 }
-
 .metric-bar {
     display: flex;
     align-items: center;
     margin: 15px 0;
 }
-
 .metric-label {
     width: 200px;
     font-size: 0.9rem;
 }
-
 .bar-container {
     flex: 1;
     height: 20px;
@@ -215,24 +159,20 @@ h1 {
     overflow: hidden;
     margin: 0 20px;
 }
-
 .bar-fill {
     height: 100%;
     background: linear-gradient(90deg, #4a90e2, #7b68ee);
     border-radius: 10px;
     transition: width 1s ease;
 }
-
 .sleep-deprived .bar-fill {
     background: linear-gradient(90deg, #ff6b6b, #ff9500);
 }
-
 .metric-value {
     width: 60px;
     text-align: right;
     font-weight: bold;
 }
-
 .insights {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 15px;
@@ -240,19 +180,16 @@ h1 {
     margin: 40px 0;
     backdrop-filter: blur(10px);
 }
-
 .insights h3 {
     color: #4a90e2;
     margin-bottom: 20px;
     font-size: 1.8rem;
 }
-
 .insights p {
     line-height: 1.8;
     font-size: 1.1rem;
     opacity: 0.9;
 }
-
 .connection-line {
     position: absolute;
     height: 2px;
@@ -260,18 +197,15 @@ h1 {
     opacity: 0.6;
     animation: flow 3s infinite;
 }
-
 @keyframes flow {
     0% { opacity: 0; }
     50% { opacity: 0.8; }
     100% { opacity: 0; }
 }
-
 .sleep-deprived .connection-line {
     background: linear-gradient(90deg, transparent, #ff6b6b, transparent);
     animation: slowFlow 5s infinite;
 }
-
 @keyframes slowFlow {
     0% { opacity: 0; }
     30% { opacity: 0.3; }
@@ -324,7 +258,7 @@ body {
 }
 
 
-/* PAGE TWO */
+/* PAGE TWO (BRAIN/intro) */
 .two-column-layout {
   display: flex;
   flex-direction: row;
@@ -362,8 +296,7 @@ body {
   background-color: #f7f7f7;
 }
 
-
-/* five-choice test */
+/* ===== five-choice test CSS ===== */
     #rti-grid {
     display: flex;
     justify-content: center;
@@ -388,17 +321,14 @@ body {
     background: rgba(74, 144, 226, 0.2);
     transform: scale(1.05);
   }
-
   .rti-option:active {
     transform: scale(0.95);
   }
-
   .rti-option.active {
     background: #4a90e2;
     color: #000;
     transform: scale(1.1);
   }
-
   #countdown {
   position: fixed;
   top: 50%;
@@ -415,7 +345,6 @@ body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   letter-spacing: 2px;
 }
-
 #rti-results {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 15px;
@@ -424,24 +353,20 @@ body {
     text-align: center;
     backdrop-filter: blur(10px);
 }
-
 #rti-results h3 {
     color: #4a90e2;
     margin-bottom: 20px;
     font-size: 1.8rem;
 }
-
 #rti-results p {
     font-size: 1.1rem;
     margin: 10px 0;
     line-height: 1.6;
 }
-
 #rti-results p strong {
     color: #ffffff;
     font-weight: bold;
 }
-
 #rti-results canvas {
     width: 800px !important;
     height: 500px !important;
@@ -450,17 +375,14 @@ body {
     border-radius: 8px;
     padding: 10px;
 }
-
 #rti-results .fun-fact {
     margin-top: 20px;
 }
-
 #rti-results .fun-fact h4 {
     color: #4a90e2;
     font-size: 1.4rem;
     margin-bottom: 10px;
 }
-
 #rti-results .fun-fact p {
     font-size: 1rem;
     line-height: 1.6;
@@ -468,7 +390,7 @@ body {
     opacity: 0.9;
 }
 
-/* Brain Embed CSS */
+/* ===== Brain Embed INTEGRATION CSS ===== */
 .sketchfab-embed-wrapper {
     position: relative;
     width: 100%;
@@ -479,7 +401,6 @@ body {
     border: 2px solid rgba(74, 144, 226, 0.3);
     backdrop-filter: blur(10px);
 }
-
 .sketchfab-embed-wrapper iframe {
     position: absolute;
     top: 0;
@@ -496,11 +417,9 @@ body {
     gap: 40px;
     align-items: center;
 }
-
 .text-column {
     padding-right: 20px;
 }
-
 .brain-column {
     display: flex;
     justify-content: center;
@@ -523,93 +442,27 @@ body {
     }
 }
 
-/* Plot Grid Styles */
-.plots-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 30px;
-    margin-top: 20px;
-}
-
-.plot-preview {
-    background: white;
-    border-radius: 8px;
-    padding: 25px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    height: 500px; /* Increased height to properly contain both plots */
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-
-.plot-preview:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.plot-preview canvas {
-    width: 100%;
-    height: 200px;
-}
-
-/* Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
-}
-
-.modal-content {
-    position: relative;
-    background-color: white;
-    margin: 5% auto;
-    padding: 30px;
-    width: 80%;
-    max-width: 1200px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-.close-modal {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #666;
-    transition: color 0.2s ease;
-}
-
-.close-modal:hover {
-    color: #000;
-}
-
-#modal-plot-container {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    background: white;
+/* ===== Pre-plotly intro INTEGRATION CSS ===== */
+.info-box {
+    background-color: #f9f9f9;
+    border-left: 6px solid #4a90e2;
     padding: 20px;
+    margin-bottom: 40px;
     border-radius: 8px;
+    color: #333;
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
-
-#modal-plot-container canvas {
-    width: 100%;
-    height: 100%;
+.info-box h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 30px;
+}
+.tldr {
+    font-style: italic;
 }
 
 /* ===== PLOTLY INTEGRATION CSS ===== */
-
 /* Plot Controls */
 .plot-controls {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -618,7 +471,6 @@ body {
     margin-bottom: 30px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-
 .control-group {
     display: flex;
     gap: 30px;
@@ -627,20 +479,17 @@ body {
     margin-bottom: 20px;
     flex-wrap: wrap;
 }
-
 .control-item {
     display: flex;
     flex-direction: column;
     gap: 8px;
     min-width: 200px;
 }
-
 .control-item label {
     font-weight: 600;
     color: #4a90e2;
     font-size: 0.9rem;
 }
-
 .control-item select {
     padding: 12px 15px;
     border: 2px solid #4a90e2;
@@ -650,13 +499,11 @@ body {
     color: #333;
     transition: all 0.3s ease;
 }
-
 .control-item select:focus {
     outline: none;
     border-color: #357abd;
     box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
 }
-
 .plot-description {
     text-align: center;
     padding: 15px;
@@ -664,7 +511,6 @@ body {
     border-radius: 10px;
     border-left: 4px solid #4a90e2;
 }
-
 .plot-description p {
     margin: 0;
     line-height: 1.6;
